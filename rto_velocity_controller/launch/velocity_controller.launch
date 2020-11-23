@@ -1,0 +1,13 @@
+<launch>
+   <include file="$(find rto_bringup_sim)/launch/robot.launch" />
+
+   <node pkg="rto_velocity_controller" name="rto_velocity_controller" type="velocity_controller.py" />
+       <param name="velocity_max" value="0.5" />
+       <param name="distance_stop" value="0.4" />
+       <param name="distance_slow" value="1.2" />
+       <param name="ROBOT" type="string" value="$(env ROBOT)" />
+
+   <node pkg="teleop_twist_keyboard" name="teleop_twist_keyboard" type="teleop_twist_keyboard.py" output="screen">
+       <remap from="/cmd_vel" to="/input/cmd_vel" />
+   </node>
+</launch>
